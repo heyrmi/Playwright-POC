@@ -7,9 +7,11 @@
                 <methods>
                     <include name="chromiumTest"/>
                     <include name="chromeTest"/>
-                    <include name="edgeTest"/>
                     <include name="firefoxTest"/>
                     <include name="safariTest"/>
+                    <!--Excluding msEdge test due to some installation problems on MacOS
+                        Solution for this is provided in the README file-->
+                    <exclude name="edgeTest"/>
                 </methods>
             </class>
         </classes>
