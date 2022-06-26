@@ -5,7 +5,9 @@
         <classes>
             <class name="tests.ExampleTest">
                 <methods>
-                    <include name="googleTest"/>
+                    <include name="chromiumTest"/>
+                    <include name="chromeTest"/>
+                    <include name="edgeTest"/>
                     <include name="firefoxTest"/>
                     <include name="safariTest"/>
                 </methods>

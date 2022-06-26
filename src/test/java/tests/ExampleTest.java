@@ -12,16 +12,39 @@ import org.testng.annotations.Test;
 public class ExampleTest {
     Playwright playwright;
 
-
     @BeforeClass
     public void beforeClass() {
         playwright = Playwright.create();
     }
 
+    @Test
+    public void chromiumTest() {
+        // dafult will be tested in chromium
+        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        Page page = browser.newPage();
+        page.navigate("http://www.google.com");
+        System.out.println(page.title());
+        Assert.assertEquals(page.title(), "Google");
+        browser.close();
+    }
 
     @Test
-    public void googleTest() {
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+    public void chromeTest() {
+        // setting up value in setChannel will launch respective browser
+        Browser browser = playwright.chromium()
+                .launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
+        Page page = browser.newPage();
+        page.navigate("http://www.google.com");
+        System.out.println(page.title());
+        Assert.assertEquals(page.title(), "Google");
+        browser.close();
+    }
+
+    @Test
+    public void edgeTest() {
+        // setting up value in setChannel will launch respective browser
+        Browser browser = playwright.chromium()
+                .launch(new BrowserType.LaunchOptions().setChannel("msedge").setHeadless(false));
         Page page = browser.newPage();
         page.navigate("http://www.google.com");
         System.out.println(page.title());
@@ -48,7 +71,6 @@ public class ExampleTest {
         Assert.assertEquals(page.title(), "Google");
         browser.close();
     }
-
 
     @AfterClass
     public void afterClass() {
